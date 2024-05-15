@@ -1,0 +1,27 @@
+services:
+  web:
+    build: .
+    restart: always
+    container_name: Website
+    depends_on:
+      - database
+    ports:
+      - 80:3000
+
+  database:
+    image: postgres
+    container_name: PostgreSQL
+    restart: always
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=db-testing
+
+  adminer:
+    image: adminer
+    container_name: adminer
+    ports:
+      - "8080:8080"
+
+networks:
+  default:
