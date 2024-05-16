@@ -1,6 +1,24 @@
-import Image from "next/image";
+"use client"
+
+import { product } from "@/lib/interfaces"
+import { useEffect, useState } from "react"
 
 export default function Home() {
+  const [products, setProducts] = useState<product[]>([])
+  const [loaded, setLoaded] = useState<boolean>(false)
+
+  useEffect(() => {
+    fetch("/api", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then(res => res.json()).then((products: product[]) => {
+      setProducts(products)
+    })
+    setLoaded(true)
+  }, [])
+
   return (
     <main className="h-screen flex flex-col">
       <div className="bg-gradient-to-b bg-stone-800 py-8 px-16 text-white border-b-stone-500 border-b-2">
