@@ -1,6 +1,13 @@
 import prisma from "@/database/prismaSingleton"
 import { NextRequest } from "next/server"
 
+export async function POST(request: NextRequest) {
+	if (request.headers.get("Content-Type") != "application/json")
+		return new Response("Content-Type should be \"application/json\"", { status: 415, statusText: "Unsupported Media Type" })
+
+	return new Response("1")
+}
+
 export async function GET(request: NextRequest) {
 	if (request.headers.get("Content-Type") != "application/json")
 		return new Response("Content-Type should be \"application/json\"", { status: 415, statusText: "Unsupported Media Type" })

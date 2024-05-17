@@ -4,19 +4,22 @@
 
 :root {
   --foreground-rgb: 0, 0, 0;
-  --background-rgb: 214, 219, 220;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background-rgb: 0, 0, 0;
-    --foreground-rgb: 214, 219, 220
-  }
+  --background-rgb: 255, 255, 255;
 }
 
 body {
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-rgb))
+}
+
+.disableSpinner {
+  appearance: textfield;
+}
+
+.disableSpinner::-webkit-outer-spin-button,
+.disableSpinner::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 @layer utilities {
